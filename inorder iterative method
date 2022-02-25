@@ -1,0 +1,31 @@
+ vector<int> inOrder(Node* root)
+    {
+        //code here
+        stack<Node*>st;
+        vector<int>ans;
+        st.push(root);
+        while(root->left!=NULL)
+        {
+            root=root->left;
+            st.push(root);
+        }
+        while(!st.empty())
+        {
+             
+            Node* Node=st.top();
+            st.pop();
+            ans.push_back(Node->data);
+            if(Node->right)
+            {
+                st.push(Node->right);
+                root=Node->right;
+                while(root->left!=NULL)
+                {
+                root=root->left;
+                st.push(root);
+                }
+                
+            }
+        }
+        return ans;
+    }
